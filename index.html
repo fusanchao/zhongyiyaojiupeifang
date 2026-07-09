@@ -1713,8 +1713,74 @@
         }
 
         // ================================================================
-        // 🚀 启动
+        // 🚀 启动       
         // ================================================================
+        // 🚀 页面加载时自动获取URL参数中的授权码（一键直达功能）
+        // ================================================================
+        (function autoAuthFromURL() {
+            // 获取当前页面的URL参数
+            const urlParams = new URLSearchParams(window.location.search);
+            const codeFromUrl = urlParams.get('code');
+            
+            if (codeFromUrl) {
+                // 如果URL中有code参数，等待DOM加载完成后自动填入并验证
+                const checkAndAuth = function() {
+                    const authInput = document.getElementById('authCodeInput');
+                    const verifyBtn = document.getElementById('authVerifyBtn');
+                    
+                    if (authInput && verifyBtn) {
+                        // 自动填入授权码（转为大写）
+                        authInput.value = codeFromUrl.toUpperCase().trim();
+                        // 清除可能存在的错误提示
+                        const errorEl = document.getElementById('authErrorMsg');
+                        if (errorEl) errorEl.textContent = '';
+                        // 延迟800ms执行点击，让用户看到输入过程，体验更自然
+                        setTimeout(function() {
+                            verifyBtn.click();
+                        }, 800);
+                        return true;
+                    }
+                    return false;
+                };
+                
+                // 尝试立即执行，如果DOM未加载完成则使用MutationObserver监听
+                if (document.readyState === 'loading') {
+                    // DOM还在加载，使用DOMContentLoaded事件
+                    document.addEventListener('DOMContentLoaded', function() {
+                        // 最多尝试3次，每次间隔300ms
+                        let attempts = 0;
+                        const maxAttempts = 3;
+                        const tryAuth = function() {
+                            attempts++;
+                            if (checkAndAuth()) return;
+                            if (attempts < maxAttempts) {
+                                setTimeout(tryAuth, 300);
+                            } else {
+                                // 如果3次都失败，可能是页面结构变化，静默失败，不干扰用户
+                                console.warn('自动授权失败，用户可手动输入');
+                            }
+                        };
+                        tryAuth();
+                    });
+                } else {
+                    // DOM已加载，直接尝试
+                    let attempts = 0;
+                    const maxAttempts = 3;
+                    const tryAuth = function() {
+                        attempts++;
+                        if (checkAndAuth()) return;
+                        if (attempts < maxAttempts) {
+                            setTimeout(tryAuth, 300);
+                        } else {
+                            console.warn('自动授权失败，用户可手动输入');
+                        }
+                    };
+                    tryAuth();
+                }
+            }
+        })();
+
+        // 原有启动代码
         session.isAuthorized = false;
         session.expireDate = null;
         renderStep();
