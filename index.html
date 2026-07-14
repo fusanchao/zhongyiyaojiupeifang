@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>养生药酒 · 智能推荐</title>
+    <title>国标测试 · 精准匹配 · AI推荐</title>    
     <style>
         /* 样式完全保持不变 */
         * { margin:0; padding:0; box-sizing:border-box; font-family:system-ui, 'Microsoft YaHei', 'Segoe UI', Roboto, sans-serif; }
@@ -99,8 +99,8 @@
 <body>
     <div class="app-container" id="app">
         <div class="header">
-            <h1>🍶 养生药酒 · 智能向导</h1>
-            <p>依据体质 · 症状 · 中医理论 AI推荐养生酒方</p>
+            <h1>🍶 国标测试 · 精准匹配 · AI推荐</h1>
+            <p>依据体质 · 需求 · AI推荐养生酒配方 · 仅供查询</p>
             <div class="auth-status" id="authStatus">
                 <span class="locked">🔒 未授权</span>
             </div>
@@ -1011,21 +1011,21 @@
         // 🧬 体质测试数据
         // ================================================================
         const CONSTITUTION_QUESTIONS = [
-            { "id": 1, "code": "A1", "text": "您精力充沛吗？", "category": "平和质", "reverse": false },
+            { "id": 1, "code": "A1", "text": "您精力很充沛吗？", "category": "平和质", "reverse": false },
             { "id": 2, "code": "A2", "text": "您感觉很累吗？", "category": "平和质", "reverse": true },
             { "id": 3, "code": "A3", "text": "您感到闷闷不乐、情绪低沉吗？", "category": "平和质", "reverse": true },
-            { "id": 4, "code": "A4", "text": "您能适应外界自然和社会环境的变化吗？", "category": "平和质", "reverse": false },
-            { "id": 5, "code": "B1", "text": "您容易疲乏吗？", "category": "气虚质", "reverse": false },
+            { "id": 4, "code": "A4", "text": "您能轻松适应外界自然和社会环境的变化吗？", "category": "平和质", "reverse": false },
+            { "id": 5, "code": "B1", "text": "您容易感到疲乏吗？", "category": "气虚质", "reverse": false },
             { "id": 6, "code": "B2", "text": "您容易气短（呼吸短促，接不上气）吗？", "category": "气虚质", "reverse": false },
             { "id": 7, "code": "B3", "text": "您活动量稍大就容易出虚汗吗？", "category": "气虚质", "reverse": false },
             { "id": 8, "code": "C1", "text": "您手脚发凉吗？", "category": "阳虚质", "reverse": false },
             { "id": 9, "code": "C2", "text": "您胃脘部、背部或腰膝部怕冷吗？", "category": "阳虚质", "reverse": false },
             { "id": 10, "code": "C3", "text": "您吃（喝）凉的东西会感到不舒服或者怕吃凉东西吗？", "category": "阳虚质", "reverse": false },
-            { "id": 11, "code": "D1", "text": "您感到手脚心发热吗？", "category": "阴虚质", "reverse": false },
-            { "id": 12, "code": "D2", "text": "您皮肤或口唇干吗？", "category": "阴虚质", "reverse": false },
+            { "id": 11, "code": "D1", "text": "您感到手心、脚心发热吗？", "category": "阴虚质", "reverse": false },
+            { "id": 12, "code": "D2", "text": "您皮肤或口唇经常觉得很干吗？", "category": "阴虚质", "reverse": false },
             { "id": 13, "code": "D3", "text": "您感到口干咽燥、总想喝水吗？", "category": "阴虚质", "reverse": false },
             { "id": 14, "code": "E1", "text": "您感到身体沉重不轻松或不爽快吗？", "category": "痰湿质", "reverse": false },
-            { "id": 15, "code": "E2", "text": "您腹部肥满松软吗？", "category": "痰湿质", "reverse": false },
+            { "id": 15, "code": "E2", "text": "您腹部肥满松软吗（大腹便便）？", "category": "痰湿质", "reverse": false },
             { "id": 16, "code": "E3", "text": "您平时痰多吗？", "category": "痰湿质", "reverse": false },
             { "id": 17, "code": "F1", "text": "您面部或鼻部有油腻感或者油亮发光吗？", "category": "湿热质", "reverse": false },
             { "id": 18, "code": "F2", "text": "您容易生痤疮或者疮疖吗？", "category": "湿热质", "reverse": false },
@@ -1180,7 +1180,7 @@
                         </div>
                         <div id="authErrorMsg" class="error-msg"></div>
                         <div class="buy-link">
-                            还没有授权码？ <a href="https://t66uaor7j0s2gntgrrjyk0tmbfyw92r.taobao.com/" target="_blank">点击前往淘宝购买</a>
+                            还没有授权码？ <a href="https://xitong-mozu.taobao.com/" target="_blank">点击前往淘宝购买</a>
                         </div>
                         <div class="hint">💡 授权码在到期日前无限次使用，过期后失效</div>
                     </div>
@@ -1235,22 +1235,22 @@
             const expireStr = session.expireDate ? session.expireDate.toLocaleDateString() : '--';
             container.innerHTML = `
                 <div class="card">
-                    <div class="section-title">📖 使用说明 · 智能流程</div>
+                    <div class="section-title">📖 使用说明 · 查询流程</div>
                     <div style="line-height:1.8; margin-bottom:24px;">
-                        <p>✅ 本系统依据国家标准及传统泡酒配方整理，请按步骤操作：</p>
+                        <p>✅ 本系统依据国家标准整理，请按步骤操作：</p>
                         <ul style="margin:16px 0 16px 24px;">
-                            <li>① 选择或测试体质（共28题，可快速选择跳过）</li>
-                            <li>② 选择当前不适症状（可多选）</li>
-                            <li>③ 智能匹配推荐配方（匹配度 ≥ 50% 才推荐）</li>
+                            <li>① 选择体质或测试体质（答题或自选）</li>
+                            <li>② 选择需要匹配的症状（可多选）</li>
+                            <li>③ 智能匹配推荐配方（匹配度 ≥ 50% ）</li>
                             <li>④ 点击配方卡片查看完整制作方法及禁忌</li>
                         </ul>
-                        <p><strong>⚠️ 重要提示：</strong> 孕妇、儿童、酒精过敏者禁用；医嘱禁酒者禁用；高血压、肝病者慎用。</p>
+                        <p><strong>⚠️ 重要提示：</strong> 查询结论仅供专业人士参考；医嘱禁酒者禁用；个人爱好者慎用。</p>
                         <p style="margin-top:12px; color:#64748b;">📊 授权有效期至：<strong>${expireStr}</strong> · 无使用次数限制</p>
                         <p style="color:#94a3b8; font-size:0.85rem;">💡 关闭页面后需重新输入授权码</p>
                     </div>
                     <div class="flex-between">
                         <div></div>
-                        <button class="btn btn-next" id="nextStepBtn">开始体质测试 →</button>
+                        <button class="btn btn-next" id="nextStepBtn">开始中医体质测试 →</button>
                     </div>
                 </div>
             `;
@@ -1264,7 +1264,7 @@
             if (constitutionResult) {
                 container.innerHTML = `
                     <div class="card">
-                        <div class="section-title">✅ 您的体质测试结果</div>
+                        <div class="section-title">✅ 体质测试结果</div>
                         <div style="background:#eef2ea; padding:18px; border-radius:20px;">
                             <h3>🏥 ${constitutionResult.type}</h3>
                             <p>${constitutionResult.desc || ''}</p>
@@ -1427,7 +1427,7 @@
             const conflictPair = getExclusiveConflict(selectedSymptoms);
             let conflictWarning = '';
             if (conflictPair) {
-                conflictWarning = `<div class="conflict-note">⚠️ 中医理论提示：“${conflictPair[0]}”与“${conflictPair[1]}”通常不会同时出现，请核实症状。</div>`;
+                conflictWarning = `<div class="conflict-note">⚠️ 中医理论提示：“${conflictPair[0]}”与“${conflictPair[1]}”不会同时出现，请核实症状。</div>`;
             }
 
             const symptomHtml = ALL_SYMPTOMS.map(sym =>
@@ -1436,7 +1436,7 @@
 
             container.innerHTML = `
                 <div class="card">
-                    <div class="section-title">🔍 选择您的不适症状（可多选）</div>
+                    <div class="section-title">🔍 请选择需要匹配的症状（可多选）</div>
                     <p style="margin-bottom:12px;">✨ 当前体质：<strong style="color:#e67e22;">${constitutionResult.type}</strong> | 已选 ${selectedSymptoms.length} 个症状</p>
                     ${conflictWarning}
                     <div class="symptom-grid" id="symptomGrid">${symptomHtml}</div>
